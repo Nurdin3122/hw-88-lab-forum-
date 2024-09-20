@@ -15,6 +15,7 @@ export interface Post {
     description:string;
     image:string | null,
     user:string;
+    createdAt:string;
 }
 
 export interface PostMutation {

@@ -1,9 +1,23 @@
 import express from "express";
-import {imagesUpload} from "../multer/multer";
+import {imagesUpload} from "../multer";
 import User from "../models/Users";
 import Posts from "../models/Posts";
+import dayjs from "dayjs";
 
 const postsRouter = express.Router()
+
+postsRouter.get("/",async (req,res) => {
+    try {
+        const posts = await Posts.find().populate({path: 'user', select: 'username -_id'}).sort({ createdAt: -1 });
+        const formattedPosts = posts.map(post => ({
+            ...post.toObject(),
+            createdAt: dayjs(post.createdAt).format('DD.MM.YYYY HH:mm')
+        }));
+            return res.send(formattedPosts);
+    } catch (error) {
+        return res.status(400).send(error);
+    }
+});
 
 postsRouter.post("/", imagesUpload.single('image'),async (req,res) => {
     const token = req.get('Authorization');
@@ -40,5 +54,8 @@ postsRouter.post("/", imagesUpload.single('image'),async (req,res) => {
         return res.status(400).send(error);
     }
 });
+
+
+
 
 export default postsRouter;

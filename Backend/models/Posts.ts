@@ -13,6 +13,10 @@ const PostsSchema = new Schema({
         ref:"User",
         required:true,
     },
+    createdAt: {
+        type: Date,
+        default: Date.now
+    },
 })
 
 const Posts = mongoose.model("Post",PostsSchema)
