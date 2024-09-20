@@ -19,6 +19,35 @@ postsRouter.get("/",async (req,res) => {
     }
 });
 
+postsRouter.get("/:id",async (req,res) => {
+    try {
+        const token = req.get('Authorization');
+        if (!token) {
+            return res.status(401).send({error: 'No token present'});
+        }
+
+        const user = await User.findOne({token});
+        if (!user) {
+            return res.status(401).send({error: 'Wrong token!'});
+        }
+
+        const { id } = req.params;
+        const post = await Posts.findById(id).populate({path: 'user', select: 'username -_id'});
+        if (!post) {
+            return res.status(404).send({ error: 'post not found' });
+        }
+        const formattedPost = {
+            ...post.toObject(),
+            createdAt: dayjs(post.createdAt).format('DD.MM.YYYY HH:mm')
+        };
+
+        return res.send(formattedPost);
+    } catch (error) {
+        return res.status(400).send(error);
+    }
+});
+
+
 postsRouter.post("/", imagesUpload.single('image'),async (req,res) => {
     const token = req.get('Authorization');
     if (!token) {

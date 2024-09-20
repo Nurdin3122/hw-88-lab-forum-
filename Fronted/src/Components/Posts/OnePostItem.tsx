@@ -1,28 +1,21 @@
 import React from 'react';
+import imageNotAvailable from "../../assets/images/imageNotAvailab.jpg";
 import {apiUrl} from "../../AxiosApi/BaseUrl.ts";
-import imageNotAvailable from "../../assets/images/imageNotAvailab.jpg"
-import "./postsItem.css"
-import {useNavigate} from "react-router-dom";
 
 interface Props {
     _id:string;
     user:string;
     title:string;
+    description:string;
     image:string;
     createdAt:string;
 }
 
-const PostItem:React.FC<Props> = ({_id,title,image,user,createdAt}) => {
-    const navigate = useNavigate();
+const OnePostItem:React.FC<Props> = ({_id,title,description,image,user,createdAt}) => {
     let cardImage = imageNotAvailable;
     if (image) {
         cardImage = apiUrl + "/" + image;
     }
-    const showOnePost = (id) => {
-        navigate(`/one-post/${id}`)
-    };
-
-
 
     return (
         <div className="d-flex flex-wrap m-3 border align-items-center">
@@ -41,11 +34,12 @@ const PostItem:React.FC<Props> = ({_id,title,image,user,createdAt}) => {
 
 
                 <div className="mb-5">
-                    <h5 onClick={() => showOnePost(_id)} className="mt-2 mb-3 text-break ">{title}</h5>
+                    <h5 className="mt-2 text-break ">{title}</h5>
+                    <h5 className="mt-2 mb-3 text-break ">{description}</h5>
                 </div>
             </div>
         </div>
     );
 };
 
-export default PostItem;
+export default OnePostItem;
