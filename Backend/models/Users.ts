@@ -1,8 +1,7 @@
 import mongoose, {Model} from "mongoose";
 import {UserFields} from "../Types.Db";
-const Schema = mongoose.Schema;
 import bcrypt from 'bcrypt';
-
+const Schema = mongoose.Schema;
 interface UserMethods {
     checkPassword(password: string): Promise<boolean>;
 }

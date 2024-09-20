@@ -13,7 +13,7 @@ const HeaderForUser:React.FC<Props> = ({user}) => {
                 <Link to="/" className="navbar-brand mb-0 h1">Form</Link>
                 <div className="justify-content-end">
                    <span className="me-5">Hello: {user.username}</span>
-                    <button className="btn btn-dark">Add a new post</button>
+                    <Link to="/create-post" className="btn btn-dark">Add a new post</Link>
                 </div>
             </div>
         </nav>

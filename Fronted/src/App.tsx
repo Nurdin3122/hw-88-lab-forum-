@@ -4,6 +4,7 @@ import Home from "./Container/Home.tsx";
 import Header from "./Container/Header/Header.tsx";
 import CreateUserForm from "./Components/Users/CreateUserForm.tsx";
 import CheckUserForm from "./Components/Users/CheckUserForm.tsx";
+import CreatePost from "./Components/Posts/CreatePost.tsx";
 
 const App = () => (
     <>
@@ -16,6 +17,7 @@ const App = () => (
                 <Route path="/" element={<Home/>}/>
                 <Route path="/create-user-form" element={<CreateUserForm/>}/>
                 <Route path="/check-user-form" element={<CheckUserForm/>}/>
+                <Route path="/create-post" element={<CreatePost/>}/>
                 <Route path="*" element={<h1 className="mt-5 text-center">There isn't such route</h1>}/>
             </Routes>
         </main>
