@@ -21,16 +21,6 @@ postsRouter.get("/",async (req,res) => {
 
 postsRouter.get("/:id",async (req,res) => {
     try {
-        const token = req.get('Authorization');
-        if (!token) {
-            return res.status(401).send({error: 'No token present'});
-        }
-
-        const user = await User.findOne({token});
-        if (!user) {
-            return res.status(401).send({error: 'Wrong token!'});
-        }
-
         const { id } = req.params;
         const post = await Posts.findById(id).populate({path: 'user', select: 'username -_id'});
         if (!post) {

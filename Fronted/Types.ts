@@ -23,3 +23,15 @@ export interface PostMutation {
     description:string;
     image:string ,
 }
+
+export interface Comment {
+    _id:string;
+    user:string;
+    post:string;
+    comment:string
+}
+
+export interface CommentMutation {
+    post:string;
+    comment:string;
+}

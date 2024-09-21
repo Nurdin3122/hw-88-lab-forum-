@@ -3,7 +3,8 @@ import {useParams} from "react-router-dom";
 import {useAppSelector} from "../../app/hooks.ts";
 import {userState} from "../Users/UsersSlice.ts";
 import ShowOnePost from "./ShowOnePost.tsx";
-import DontShowOnePost from "./DontShowOnePost.tsx";
+import CommentsForm from "../Comments/CommentsForm.tsx";
+import Comments from "../Comments/Comments.tsx";
 
 const OnePost = () => {
     const {id}:string = useParams();
@@ -11,9 +12,17 @@ const OnePost = () => {
     return (
         <div>
             {user ? (
-                <ShowOnePost id={id}/>
+                <>
+                    <ShowOnePost id={id}/>
+                    <Comments id={id}/>
+                    <CommentsForm id={id}/>
+                </>
+
             ) : (
-                <DontShowOnePost/>
+                <>
+                    <ShowOnePost id={id}/>
+                    <Comments/>
+                </>
             )}
         </div>
     );

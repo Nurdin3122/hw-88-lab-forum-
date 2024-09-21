@@ -5,9 +5,6 @@ import {Post, PostMutation} from "../../../Types.ts";
 export const getPostsRequest = createAsyncThunk<Post[]>(
     "posts/getPostRequest",
     async () => {
-
-
-
         const response = await axiosApi.get<Post[] | null>("/posts");
         return response.data
     }
@@ -16,18 +13,7 @@ export const getPostsRequest = createAsyncThunk<Post[]>(
 export const getOnePost = createAsyncThunk<Post,string>(
     "posts/getOnePost",
     async (id:string) => {
-        const user = localStorage.getItem('persist:form:user');
-        const UserJsonParse = JSON.parse(user);
-        const token = JSON.parse(UserJsonParse.user)
-        if (!token) {
-            throw new Error('User not authenticated');
-        }
-
-        const response = await axiosApi.get<Post | null>(`/posts/${id}`,{
-            headers: {
-                Authorization: `${token.token}`,
-            }
-        });
+        const response = await axiosApi.get<Post | null>(`/posts/${id}`);
         return response.data
     }
 );

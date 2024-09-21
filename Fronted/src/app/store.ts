@@ -3,6 +3,7 @@ import {UserReducer} from "../Components/Users/UsersSlice.ts";
 import storage from "redux-persist/lib/storage";
 import {FLUSH,PAUSE,PERSIST,PURGE,REGISTER,REHYDRATE,persistReducer,persistStore} from "redux-persist";
 import {PostsReducer} from "../Components/Posts/PostsSlice.ts";
+import {CommentsReducer} from "../Components/Comments/CommentsSlice.tsx";
 
 const usersPersistConfig = {
     key: 'form:user',
@@ -12,6 +13,7 @@ const usersPersistConfig = {
 
 const rootReducer = combineReducers({
     posts:PostsReducer,
+    comments:CommentsReducer,
     user: persistReducer(usersPersistConfig, UserReducer),
 });
 
