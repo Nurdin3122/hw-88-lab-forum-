@@ -1,7 +1,7 @@
 export interface UserFields {
     username: string;
     password: string;
-    token: string;
+    token?: string;
 }
 
 export interface Post {

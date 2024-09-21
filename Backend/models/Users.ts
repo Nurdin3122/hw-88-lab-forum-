@@ -21,7 +21,7 @@ const UserSchema = new Schema<UserFields,UserModel, UserMethods>({
     },
     token:{
         type:String,
-        required:true,
+        default: null,
         unique:false,
     }
 });
@@ -45,6 +45,7 @@ UserSchema.set('toJSON', {
 UserSchema.methods.checkPassword = function(password) {
     return bcrypt.compare(password, this.password);
 };
+
 
 
 const User = mongoose.model<UserFields, UserModel>("User",UserSchema);

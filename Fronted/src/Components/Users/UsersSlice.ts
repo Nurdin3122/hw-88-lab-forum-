@@ -38,6 +38,7 @@ export const UserSLice = createSlice<UserState>({
         });
     },
 });
+export const {unsetUser} = UserSLice.actions;
 
 export const UserReducer = UserSLice.reducer;
 

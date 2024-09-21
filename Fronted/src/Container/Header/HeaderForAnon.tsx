@@ -9,6 +9,7 @@ const HeaderForAnon = () => {
                 <div className="justify-content-end">
                     <Link to="/create-user-form" className="btn btn-secondary me-3">Create a new account</Link>
                     <Link to="/check-user-form" className="btn btn-dark">Log in</Link>
+
                 </div>
             </div>
         </nav>
