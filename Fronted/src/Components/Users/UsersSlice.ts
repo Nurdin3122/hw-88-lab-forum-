@@ -1,7 +1,7 @@
 import {User} from "../../../Types.ts";
 import {createSlice} from "@reduxjs/toolkit";
 import {RootState} from "../../app/store.ts";
-import {userCheckPostRequest, userPostRequest} from "./UsersThunks.ts";
+import {userCheckPostRequest} from "./UsersThunks.ts";
 
 export interface UserState {
     user:User | null;
@@ -18,7 +18,11 @@ export const initialState:UserState = {
 export const UserSLice = createSlice<UserState>({
     name:"user",
     initialState,
-    reducers: {},
+    reducers: {
+            unsetUser: (state) => {
+                state.user = null;
+            }
+    },
     extraReducers:(builder) => {
       builder.addCase(userCheckPostRequest.pending,(state) => {
           state.usersLoading = true;
